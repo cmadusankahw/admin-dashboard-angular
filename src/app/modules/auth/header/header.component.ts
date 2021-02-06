@@ -22,10 +22,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private headerDetailsSubs: Subscription;
 
   // check if user is authneticated
-  userIsAuthenticated = false;
+  userIsAuthenticated = true;
 
   // get signed user type
-  headerDetails: {userType: string, userName: string, profilePic: string};
+  headerDetails: {userName: string, profilePic: string};
 
 
 
