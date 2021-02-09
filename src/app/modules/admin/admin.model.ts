@@ -13,10 +13,16 @@ export interface Admin {
   postal_code: string;
   gender: string;
   card_details: CardDetails;
-  payment_details: MerchantPayments[];
+  payment_details: DriverPayments[];
 }
 
-export interface MerchantPayments {
+export interface DashStat {
+    registeredVehicles : number;
+    registeredPassengers: number;
+    monthlyIncome: number;
+}
+
+export interface DriverPayments {
   user_id: string;
   first_name: string;
   last_name: string;

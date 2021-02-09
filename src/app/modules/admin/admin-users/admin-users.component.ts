@@ -28,7 +28,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
   merchants: Merchant[] = [];
 
   // recieved state
-  @Input() userType = 'serviceProvider';
+  @Input() userType = 'driver';
 
   // payment arrays
   recievedMerchants: Merchant[] = [];

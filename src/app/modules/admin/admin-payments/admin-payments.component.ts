@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { AdminService } from '../admin.service';
 import { Subscription } from 'rxjs';
-import { PaymentData, MerchantPayments } from '../admin.model';
+import { PaymentData, DriverPayments } from '../admin.model';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { PaymentData, MerchantPayments } from '../admin.model';
 export class AdminPaymentsComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['user_type', 'name', 'email', 'amount_due', 'amount_paid', 'action'];
-  dataSource: MatTableDataSource<MerchantPayments>;
+  dataSource: MatTableDataSource<DriverPayments>;
 
   payDisplayedColumns: string[] = ['year', 'month', 'paid_date', 'amount_due', 'amount_paid'];
   payDataSource: MatTableDataSource<PaymentData>;
@@ -29,16 +29,16 @@ export class AdminPaymentsComponent implements OnInit, OnDestroy {
   private paymentDataSub: Subscription;
 
   // final payments list
-  payments: MerchantPayments[] = [];
+  payments: DriverPayments[] = [];
 
   // recieved state
   @Input() userType = 'serviceProvider';
 
   // payment arrays
-  recievedPayments: MerchantPayments[] = [];
+  recievedPayments: DriverPayments[] = [];
 
   // selected payment
-  selectedPayment: MerchantPayments;
+  selectedPayment: DriverPayments;
 
 
   constructor(private adminService: AdminService) { }
@@ -77,7 +77,7 @@ export class AdminPaymentsComponent implements OnInit, OnDestroy {
 
 
   // classify reieved merchant payments
-  addPayments(payments: MerchantPayments[], state: string): MerchantPayments[] {
+  addPayments(payments: DriverPayments[], state: string): DriverPayments[] {
     const pendingBookings = [];
     for (const val of payments) {
       if (val.user_type === state) {
@@ -100,7 +100,7 @@ export class AdminPaymentsComponent implements OnInit, OnDestroy {
   }
 
   // get last payment details
-  getLastPayData(payment: MerchantPayments): PaymentData {
+  getLastPayData(payment: DriverPayments): PaymentData {
     let lastPay: PaymentData;
     for (var pay of payment.pays) {
       lastPay = pay;

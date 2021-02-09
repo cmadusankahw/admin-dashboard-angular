@@ -13,20 +13,20 @@ import { Merchant, EventPlanner } from '../auth.model';
 export class HeaderComponent implements OnInit, OnDestroy {
 
 
-  onLogin = false;
-  onRegister = false;
-
   constructor(private router: Router, private authService: AuthService) { }
 
   private authSubs: Subscription;
   private headerDetailsSubs: Subscription;
 
   // check if user is authneticated
-  userIsAuthenticated = false;
+  userIsAuthenticated = true;
 
   // get signed user type
-  headerDetails: {userType: string, userName: string, profilePic: string};
-
+  headerDetails: {userType:string, userName: string, profilePic: string} = {
+    userType:"admin",
+    userName:"Test",
+    profilePic:"./assets/images/merchant/nopic.png"
+  };
 
 
   ngOnInit() {
@@ -51,20 +51,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     // hide login and signup button depend on route
     this.router.events.subscribe((e) => {
-      if (e instanceof NavigationStart) {
-
-        if (e.url === '/login') {
-          this.onLogin = true;
-          this.onRegister = false;
-
-        } else if (e.url === '/register') {
-          this.onRegister = true;
-          this.onLogin = false;
-        } else {
-          this.onLogin = false;
-          this.onRegister = false;
-        }
-      }
       if (!(e instanceof NavigationEnd)) {
         return;
       }

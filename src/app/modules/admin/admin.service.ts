@@ -6,7 +6,7 @@ import { Admin } from '../auth/auth.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { SuccessComponent } from 'src/app/success/success.component';
-import { BookingData, OrderData, PaymentData, DashboardData, MerchantPayments } from './admin.model';
+import { BookingData, OrderData, PaymentData, DashboardData, DriverPayments } from './admin.model';
 
 @Injectable({providedIn: 'root'})
 export class AdminService {
@@ -15,8 +15,8 @@ export class AdminService {
   private paymentsUpdated = new Subject<PaymentData[]>();
   private adminUpdated = new Subject<Admin>();
   private dashboardDataUpdated = new Subject<DashboardData>();
-  private adminPaymentsUpdated = new Subject<MerchantPayments[]>();
-  private merchantPaymentUpdated = new Subject<MerchantPayments>();
+  private adminPaymentsUpdated = new Subject<DriverPayments[]>();
+  private merchantPaymentUpdated = new Subject<DriverPayments>();
 
   private merchantLocationUpdated = new Subject<any[]>();
   private eventLocationUpdated = new Subject<any[]>();
@@ -31,10 +31,10 @@ export class AdminService {
   url = 'http://localhost:3000/api/';
 
 
-  adminPayments: MerchantPayments[];
+  adminPayments: DriverPayments[];
 
   // recieved merchant's payment
-  merchantPayment: MerchantPayments;
+  merchantPayment: DriverPayments;
 
 
 
@@ -75,7 +75,7 @@ export class AdminService {
   }
 
   getAdminPayments() {
-    this.http.get<{message: string, paymentDetails: MerchantPayments[]}>(this.url + 'admin/get/payments')
+    this.http.get<{message: string, paymentDetails: DriverPayments[]}>(this.url + 'admin/get/payments')
     .subscribe((res) => {
       console.log(res);
       this.adminPayments = res.paymentDetails;
@@ -85,7 +85,7 @@ export class AdminService {
 
   // get merchants' paymentss for merchant dashboards
   getMerchantPayment() {
-    this.http.get<{message: string, merchantPayment: MerchantPayments}>(this.url + 'admin/get/payment')
+    this.http.get<{message: string, merchantPayment: DriverPayments}>(this.url + 'admin/get/payment')
     .subscribe((res) => {
       console.log(res);
       this.merchantPayment = res.merchantPayment;

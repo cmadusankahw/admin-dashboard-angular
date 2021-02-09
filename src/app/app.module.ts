@@ -87,7 +87,7 @@ import { ServiceProductCategoriesComponent } from './modules/admin/service-produ
 import { EventCatgoriesComponent } from './modules/admin/event-catgories/event-catgories.component';
 import { AdminIdverifyComponent } from './modules/admin/admin-idverify/admin-idverify.component';
 import { AdminBusinessverifyComponent } from './modules/admin/admin-businessverify/admin-businessverify.component';
-
+import { AdminDashStatComponent } from './modules/admin/admin-dash/admin-dash-stat/admin-dash-stat.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +128,7 @@ import { AdminBusinessverifyComponent } from './modules/admin/admin-businessveri
     EventCatgoriesComponent,
     AdminIdverifyComponent,
     AdminBusinessverifyComponent,
+    AdminDashStatComponent,
   ],
   imports: [
     BrowserModule,
