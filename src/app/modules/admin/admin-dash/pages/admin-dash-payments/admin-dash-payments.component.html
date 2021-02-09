@@ -1,3 +1,13 @@
-<div class="pt-4 pb-2">
-  <app-admin-payments></app-admin-payments>
+<div class="mr-2 ml-2 pt-2">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="PASSENGER PAYMENTS">
+      <app-admin-passenger-payments-details></app-admin-passenger-payments-details>
+    </mat-tab>
+    <mat-tab label="DRIVER PAYMENTS">
+      <app-admin-driver-payments-details></app-admin-driver-payments-details>
+    </mat-tab>
+    <mat-tab label="INCOME">
+      <app-admin-income-details></app-admin-income-details>
+    </mat-tab>
+  </mat-tab-group>
 </div>

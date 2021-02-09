@@ -19,11 +19,9 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   // navigation
   home = 'txt-white row';
   payments = 'txt-white row';
-  users = 'txt-white row';
-  verify = 'txt-white row';
-  categories = 'txt-white row';
-  profile = 'txt-white row';
-  reports = 'txt-white row';
+  drivers = 'txt-white row';
+  passengers = 'txt-white row';
+  settings = 'txt-white row';
 
 
   private headerSubs: Subscription;
@@ -74,16 +72,12 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
          this.navHome();
        } else if (e.url === '/admin/payments') {
          this.navPayments();
-       } else if (e.url === '/admin/users') {
-         this.navUsers();
-       } else if (e.url === '/admin/verify') {
-         this.navVerify();
-       } else if (e.url === '/admin/categories') {
-         this.navCategories();
-       } else if (e.url === '/admin/reports') {
-        this.navReports();
-      }else if (e.url === '/admin/profile') {
-       this.navProfile();
+       } else if (e.url === '/admin/drivers') {
+         this.navDrivers();
+       } else if (e.url === '/admin/passengers') {
+         this.navPassengers();
+       }else if (e.url === '/admin/settings') {
+       this.navSettings();
    }
    }
  });
@@ -91,38 +85,27 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
  navHome() {
    this.home = 'txt-white row active-nav';
-   this.payments = this.users = this.verify = this.profile = this.categories = this.reports = 'txt-white row';
+   this.payments = this.drivers = this.passengers = this.settings  = 'txt-white row';
  }
 
  navPayments() {
    this.payments = 'txt-white row active-nav';
-   this.home = this.users = this.verify  = this.profile = this.categories = this.reports = 'txt-white row';
+   this.home = this.drivers = this.passengers  = this.settings  = 'txt-white row';
  }
 
- navUsers() {
-   this.users = 'txt-white row active-nav';
-   this.payments = this.home = this.verify  = this.profile = this.categories = this.reports = 'txt-white row';
+ navDrivers() {
+   this.drivers = 'txt-white row active-nav';
+   this.payments = this.home = this.passengers  = this.settings  = 'txt-white row';
  }
 
- navVerify() {
-   this.verify = 'txt-white row active-nav';
-   this.payments = this.users = this.home  = this.profile = this.categories = this.reports = 'txt-white row';
+ navPassengers() {
+   this.passengers = 'txt-white row active-nav';
+   this.payments = this.drivers = this.home  = this.settings  = 'txt-white row';
  }
 
- navCategories() {
-   this.categories = 'txt-white row active-nav';
-   this.payments = this.users = this.verify = this.home = this.profile  =this.reports = 'txt-white row';
- }
-
-
- navReports() {
-  this.reports = 'txt-white row active-nav';
-  this.payments = this.users = this.verify = this.home = this.profile  = 'txt-white row';
-}
-
- navProfile() {
-   this.profile = 'txt-white row active-nav';
-   this.payments = this.users = this.verify  = this.home = this.categories = this.reports = 'txt-white row';
+ navSettings() {
+   this.settings = 'txt-white row active-nav';
+   this.payments = this.drivers = this.passengers  = this.home  = 'txt-white row';
  }
 
 }

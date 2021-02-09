@@ -1,7 +1,7 @@
 <!-- common navbar-->
 <!--Navbar-->
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg sticky-top navbar-dark bg-primary scrolling-navbar"
+  SideClass="navbar navbar-expand-lg sticky-top navbar-dark green scrolling-navbar"
   [containerInside]="false"
   *ngIf="!userIsAuthenticated"
 >
@@ -45,7 +45,7 @@
 <!--admmin navbar-->
 <!--Navbar-->
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg sticky-top navbar-dark blue scrolling-navbar"
+  SideClass="navbar navbar-expand-lg sticky-top navbar-light green scrolling-navbar"
   [containerInside]="false"
   *ngIf="userIsAuthenticated && headerDetails.userType === 'admin'"
 >
@@ -80,7 +80,6 @@
           mdbWavesEffect
           type="button"
           class="nav-link dropdown-toggle waves-light"
-          mdbWavesEffect
         >
           <img
             [src]="

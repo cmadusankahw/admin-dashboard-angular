@@ -36,11 +36,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import {MatSliderModule} from '@angular/material/slider';
 import { DatePipe } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { QuillModule } from 'ngx-quill';
 import { QRCodeModule } from 'angularx-qrcode';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {MatTabsModule} from '@angular/material/tabs';
 
 
@@ -48,87 +46,71 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './modules/auth/header/header.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { SignupComponent } from './modules/auth/signup/signup.component';
-import { SignupSelectComponent } from './modules/auth/signup-select/signup-select.component';
 import { FooterComponent } from './modules/home/footer/footer.component';
-import { SignupMerchantComponent } from './modules/auth/signup-merchant/signup-merchant.component';
+import { AdminAddUserComponent } from './modules/admin/admin-add-user/admin-add-user.component';
 import { CardDetailsComponent } from './modules/auth/card-details/card-details.component';
 import { IdVerifyComponent } from './modules/auth/id-verify/id-verify.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { BusinessVerifyComponent } from './modules/auth/business-profile/business-verify/business-verify.component';
-import { BprofileComponent } from './modules/auth/business-profile/bprofile/bprofile.component';
-import { BusinessOpenDaysComponent } from './modules/auth/business-profile/business-open-days/business-open-days.component';
-import { MerchantProfileComponent } from './modules/auth/merchant-profile/merchant-profile.component';
+import { AdminUserProfileComponent } from './modules/admin/admin-user-profile/admin-user-profile.component';
 import { ContactUsComponent } from './modules/home/contact-us/contact-us.component';
 import { NotFoundPageComponent } from './modules/home/not-found-page/not-found-page.component';
 import { AuthInterceptor } from './modules/auth/auth-interceptor';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { SuccessComponent } from './success/success.component';
-import { TeramsConditionsComponent } from './modules/home/terams-conditions/terams-conditions.component';
 import { AdminDashboardComponent } from './modules/admin/admin-dash/admin-dashboard/admin-dashboard.component';
 import { AdminDashHomeComponent } from './modules/admin/admin-dash/pages/admin-dash-home/admin-dash-home.component';
-import { AdminDashVerificationsComponent } from './modules/admin/admin-dash/pages/admin-dash-verifications/admin-dash-verifications.component';
+import { AdminDashPassengersComponent } from './modules/admin/admin-dash/pages/admin-dash-passengers/admin-dash-passengers.component';
 import { AdminDashPaymentsComponent } from './modules/admin/admin-dash/pages/admin-dash-payments/admin-dash-payments.component';
-import { AdminDashProfileComponent } from './modules/admin/admin-dash/pages/admin-dash-profile/admin-dash-profile.component';
-import { AdminDashUsersComponent } from './modules/admin/admin-dash/pages/admin-dash-users/admin-dash-users.component';
+import { AdminDashDriversComponent } from './modules/admin/admin-dash/pages/admin-dash-drivers/admin-dash-drivers.component';
 import { AdminUsersComponent } from './modules/admin/admin-users/admin-users.component';
-import { AdminPaymentsComponent } from './modules/admin/admin-payments/admin-payments.component';
-import { AdminDashCategoriesComponent } from './modules/admin/admin-dash/pages/admin-dash-categories/admin-dash-categories.component';
-import { AdminDashReportsComponent } from './modules/admin/admin-dash/pages/admin-dash-reports/admin-dash-reports.component';
-import { AdminBackupComponent } from './modules/admin/admin-backup/admin-backup.component';
 import { AdminPieChartComponent } from './modules/admin/admin-dash/charts/admin-pie-chart/admin-pie-chart.component';
 import { AdminPaymentsChartComponent } from './modules/admin/admin-dash/charts/admin-payments-chart/admin-payments-chart.component';
 import { AdminOrdersPieChartComponent } from './modules/admin/admin-dash/charts/admin-orders-pie-chart/admin-orders-pie-chart.component';
 import { AdminUsersPieChartComponent } from './modules/admin/admin-dash/charts/admin-users-pie-chart/admin-users-pie-chart.component';
-import { ServiceProductCategoriesComponent } from './modules/admin/service-product-categories/service-product-categories.component';
-import { EventCatgoriesComponent } from './modules/admin/event-catgories/event-catgories.component';
-import { AdminIdverifyComponent } from './modules/admin/admin-idverify/admin-idverify.component';
-import { AdminBusinessverifyComponent } from './modules/admin/admin-businessverify/admin-businessverify.component';
+import { AdminDriverDetailsComponent } from './modules/admin/admin-driver-details/admin-driver-details.component';
 import { AdminDashStatComponent } from './modules/admin/admin-dash/admin-dash-stat/admin-dash-stat.component';
+import { AdminPaymentDetailsComponent } from './modules/admin/admin-payment-details/admin-payment-details.component';
+import { AdminPassengerDetailsComponent } from './modules/admin/admin-passenger-details/admin-passenger-details.component';
+import { AdminDashSettingsComponent } from './modules/admin/admin-dash/pages/admin-dash-settings/admin-dash-settings.component';
+import { AdminPassengerPaymentsDetailsComponent } from './modules/admin/admin-passenger-payments-details/admin-passenger-payments-details.component';
+import { AdminDriverPaymentsDetailsComponent } from './modules/admin/admin-dash/admin-driver-payments-details/admin-driver-payments-details.component';
+import { AdminIncomeDetailsComponent } from './modules/admin/admin-income-details/admin-income-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    SignupComponent,
-    SignupSelectComponent,
     FooterComponent,
-    SignupMerchantComponent,
+    AdminAddUserComponent,
     CardDetailsComponent,
     IdVerifyComponent,
-    BusinessVerifyComponent,
-    BprofileComponent,
-    BusinessOpenDaysComponent,
-    MerchantProfileComponent,
+    AdminUserProfileComponent,
     ContactUsComponent,
     NotFoundPageComponent,
     ErrorComponent,
     SuccessComponent,
-    TeramsConditionsComponent,
     AdminDashboardComponent,
     AdminDashHomeComponent,
-    AdminDashVerificationsComponent,
+    AdminDashPassengersComponent,
     AdminDashPaymentsComponent,
-    AdminDashProfileComponent,
-    AdminDashUsersComponent,
+    AdminDashDriversComponent,
     AdminUsersComponent,
-    AdminPaymentsComponent,
-    AdminDashCategoriesComponent,
-    AdminDashReportsComponent,
-    AdminBackupComponent,
     AdminPieChartComponent,
     AdminPaymentsChartComponent,
     AdminOrdersPieChartComponent,
     AdminUsersPieChartComponent,
-    ServiceProductCategoriesComponent,
-    EventCatgoriesComponent,
-    AdminIdverifyComponent,
-    AdminBusinessverifyComponent,
+    AdminDriverDetailsComponent,
+    AdminPaymentDetailsComponent,
     AdminDashStatComponent,
+    AdminPassengerDetailsComponent,
+    AdminDashSettingsComponent,
+    AdminPassengerPaymentsDetailsComponent,
+    AdminDriverPaymentsDetailsComponent,
+    AdminIncomeDetailsComponent,
   ],
   imports: [
     BrowserModule,

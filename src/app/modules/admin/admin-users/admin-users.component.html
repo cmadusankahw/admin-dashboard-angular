@@ -1,11 +1,7 @@
 <div class="pd-top-min">
-  <h4 *ngIf="userType == 'driver'">
+  <h4>
     <mat-icon>library_books</mat-icon>
-    <b> Newly Registered Vehicles</b>
-  </h4>
-  <h4 *ngIf="userType == 'passenger'">
-    <mat-icon>library_books</mat-icon>
-    <b> Newly Registered Passengers</b>
+    <b> Registered Admin Users</b>
   </h4>
 
   <mat-form-field>
@@ -88,7 +84,7 @@
     </table>
 
     <div class="text-center pd-top-min" *ngIf="!merchants.length">
-      No Registered Users
+      No Users Found
     </div>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
