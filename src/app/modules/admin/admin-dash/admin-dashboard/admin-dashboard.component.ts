@@ -29,7 +29,11 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   private headerSubs: Subscription;
 
   // recieved merchant
-  headerDetails: {userType: string, userName: string, profilePic: string};
+  headerDetails: {userType: string, userName: string, profilePic: string} =  {
+    userType:"admin",
+    userName:"Test",
+    profilePic:"./assets/images/merchant/nopic.png"
+  };
 
    // create new product
    editmode = true;

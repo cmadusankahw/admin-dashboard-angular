@@ -1,17 +1,14 @@
-
-mat-sidenav-content{
+mat-sidenav-content {
   background-color: #fff;
 }
 
-.txt-white{
-  color:#fff !important;
+.txt-white {
+  color: #fff !important;
 }
 
-.txt-white:hover{
-  color:rgb(212, 212, 212);
+.txt-white:hover {
+  color: rgb(212, 212, 212);
 }
-
-
 
 .sidenav-container {
   height: 100%;
@@ -25,8 +22,8 @@ mat-sidenav-content{
   background: inherit;
 }
 
-.sidenav{
-  background-color: rgb(78, 7, 110);
+.sidenav {
+  background-color: rgb(32, 121, 238);
 }
 
 .mat-toolbar.mat-primary {
@@ -35,36 +32,35 @@ mat-sidenav-content{
   z-index: 1;
 }
 
-
-.pd-top{
-  padding-top:10%;
+.pd-top {
+  padding-top: 10%;
 }
 
-.pd-img{
-  padding-left:60px;
-  padding-right:60px;
-  padding-top:90px;
-  padding-bottom:20px;
+.pd-img {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 90px;
+  padding-bottom: 20px;
 }
 
-.pd-top-min{
-  padding-top:5%;
+.pd-top-min {
+  padding-top: 5%;
 }
 
-.side-start{
-  text-align:left;
+.side-start {
+  text-align: left;
 }
 
-.side-end{
-  text-align:right;
+.side-end {
+  text-align: right;
 }
 
-.side-text{
-  vertical-align:top;
+.side-text {
+  vertical-align: top;
 }
 
-.active-nav{
-  font-weight:bold;
-  background-color:rgb(129, 9, 133);
-  color:darkseagreen;
+.active-nav {
+  font-weight: bold;
+  background-color: rgb(129, 9, 133);
+  color: darkseagreen;
 }

@@ -1,114 +1,127 @@
-<mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <!--profile pic-->
     <div class="pd-img">
-      <img [src]="headerDetails ? headerDetails.profilePic: './assets/images/headerDetails/nopic.png'"  alt="headerDetails Pic" class="img-thumbnail " style="border-radius:50%;">
-      <h5 class="txt-white pd-top-min text-center"> {{headerDetails ? headerDetails.userName: 'Loading..' }}  </h5>
+      <img
+        [src]="
+          headerDetails
+            ? headerDetails.profilePic
+            : './assets/images/headerDetails/nopic.png'
+        "
+        alt="headerDetails Pic"
+        class="img-thumbnail"
+        style="border-radius: 50%"
+      />
+      <h5 class="txt-white pd-top-min text-center">
+        {{ headerDetails ? headerDetails.userName : "Loading.." }}
+      </h5>
     </div>
 
-    <mat-nav-list >
-        <a class="txt-white row" mat-list-item [ngClass] ="home"
-        (click)="navHome()" routerLink="/admin">
-            <div class="col-md-11 side-start " >
-              <mat-icon >home</mat-icon>
-              <span class="side-text">  Home</span>
-            </div>
-            <div class="ol-md-1 side-end">
-            <mat-icon >arrow_right</mat-icon>
-          </div>
-        </a>
-
-      <a class="txt-white row" mat-list-item  [ngClass] ="payments"
-      (click)="navPayments()"  routerLink="/admin/payments">
+    <mat-nav-list>
+      <a
+        class="txt-white row"
+        mat-list-item
+        [ngClass]="home"
+        (click)="navHome()"
+        routerLink="/admin"
+      >
         <div class="col-md-11 side-start">
-          <mat-icon >business_centert</mat-icon>
-          <span class="side-text">  Manage Payments</span>
+          <mat-icon>home</mat-icon>
+          <span class="side-text"> Dashboard</span>
         </div>
         <div class="ol-md-1 side-end">
-        <mat-icon >arrow_right</mat-icon>
-      </div>
+          <mat-icon>arrow_right</mat-icon>
+        </div>
       </a>
 
-
-      <a class="txt-white row" mat-list-item  [ngClass] ="users"
-      (click)="navUsers()" routerLink="/admin/users" >
+      <a
+        class="txt-white row"
+        mat-list-item
+        [ngClass]="payments"
+        (click)="navPayments()"
+        routerLink="/admin/drivers"
+      >
         <div class="col-md-11 side-start">
-          <mat-icon >account_circle</mat-icon>
-          <span class="side-text">  Manage Users</span>
+          <mat-icon>business_centert</mat-icon>
+          <span class="side-text"> Manage Drivers</span>
         </div>
         <div class="ol-md-1 side-end">
-        <mat-icon >arrow_right</mat-icon>
-      </div>
+          <mat-icon>arrow_right</mat-icon>
+        </div>
       </a>
 
-
-
-      <a class="txt-white row" mat-list-item [ngClass] ="verify"
-      (click)="navVerify()" routerLink="/admin/verify">
+      <a
+        class="txt-white row"
+        mat-list-item
+        [ngClass]="users"
+        (click)="navUsers()"
+        routerLink="/admin/passengers"
+      >
         <div class="col-md-11 side-start">
-          <mat-icon >bookmarks</mat-icon>
-          <span class="side-text"> Verifications</span>
+          <mat-icon>account_circle</mat-icon>
+          <span class="side-text"> Manage Passengers</span>
         </div>
         <div class="ol-md-1 side-end">
-        <mat-icon >arrow_right</mat-icon>
-      </div>
+          <mat-icon>arrow_right</mat-icon>
+        </div>
       </a>
 
-      <a class="txt-white row" mat-list-item [ngClass] ="categories"
-      (click)="navCategories()" routerLink="/admin/categories">
+      <a
+        class="txt-white row"
+        mat-list-item
+        [ngClass]="verify"
+        (click)="navVerify()"
+        routerLink="/admin/payments"
+      >
         <div class="col-md-11 side-start">
-          <mat-icon >list</mat-icon>
-          <span class="side-text">  Update & Backup</span>
+          <mat-icon>bookmarks</mat-icon>
+          <span class="side-text"> Manage Payments</span>
         </div>
         <div class="ol-md-1 side-end">
-        <mat-icon >arrow_right</mat-icon>
-      </div>
+          <mat-icon>arrow_right</mat-icon>
+        </div>
       </a>
 
-
-      <a class="txt-white row" mat-list-item [ngClass] ="reports"
-      (click)="navReports()" routerLink="/admin/reports" >
+      <a
+        class="txt-white row"
+        mat-list-item
+        [ngClass]="profile"
+        (click)="navProfile()"
+        routerLink="/admin/settings"
+      >
         <div class="col-md-11 side-start">
-          <mat-icon >library_books</mat-icon>
-          <span class="side-text">  Report Wizard</span>
+          <mat-icon>perm_identity</mat-icon>
+          <span class="side-text"> Settings</span>
         </div>
         <div class="ol-md-1 side-end">
-        <mat-icon >arrow_right</mat-icon>
-      </div>
-      </a>
-
-
-      <a class="txt-white row" mat-list-item [ngClass] ="profile"
-      (click)="navProfile()" routerLink="/admin/profile">
-        <div class="col-md-11 side-start">
-          <mat-icon >perm_identity</mat-icon>
-          <span class="side-text">  My Profile</span>
+          <mat-icon>arrow_right</mat-icon>
         </div>
-        <div class="ol-md-1 side-end">
-        <mat-icon >arrow_right</mat-icon>
-      </div>
       </a>
-
     </mat-nav-list>
-
   </mat-sidenav>
 
   <!--dashboard content-->
   <mat-sidenav-content>
-    <mat-toolbar color="purple">
+    <mat-toolbar color="bg-primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Good day! {{ headerDetails ? headerDetails.userName: 'Loading..'}} </span>
+      <span
+        >Good day! {{ headerDetails ? headerDetails.userName : "Loading.." }}
+      </span>
     </mat-toolbar>
 
     <!--dashboard content-->
@@ -118,5 +131,3 @@
     <!--end dashboard content-->
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
