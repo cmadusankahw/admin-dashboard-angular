@@ -45,7 +45,7 @@
 <!--admmin navbar-->
 <!--Navbar-->
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg sticky-top navbar-light white scrolling-navbar"
+  SideClass="navbar navbar-expand-lg sticky-top navbar-light warning scrolling-navbar"
   [containerInside]="false"
   *ngIf="userIsAuthenticated && headerDetails.userType === 'admin'"
 >
@@ -59,12 +59,7 @@
   <links>
     <ul class="navbar-nav ml-auto txt-800">
       <li class="nav-item">
-        <a
-          mdbWavesEffect
-          class="nav-link"
-          target="_blank"
-          href="https://cmadusankahw.github.io/evenza-docs/"
-        >
+        <a mdbWavesEffect class="nav-link" target="_blank" href="#">
           <mdb-icon fas icon="question-circle"></mdb-icon>
           Doumentation
         </a>

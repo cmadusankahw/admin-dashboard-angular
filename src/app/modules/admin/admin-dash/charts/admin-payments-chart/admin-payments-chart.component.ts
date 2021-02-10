@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { PaymentData, getLastSixMonths } from '../../../admin.model';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../../../admin.service';
 
@@ -11,8 +10,6 @@ import { AdminService } from '../../../admin.service';
 export class AdminPaymentsChartComponent implements OnInit, OnDestroy {
 
   private paymentDataSub : Subscription;
-
-  @Input() paymentData: PaymentData[] = [];
 
   public chartType: string = 'bar';
 
@@ -83,16 +80,6 @@ public chartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'O
   constructor( private adminService: AdminService) { }
 
   ngOnInit() {
-    this.adminService.getDashBoardData();
-    this.paymentDataSub = this.adminService.getPaymentDataUpdateListener().subscribe(
-      dashdata => {
-        if (dashdata) {
-          this.paymentData = dashdata;
-          console.log(this.paymentData);
-       }
-      });
-
-    this.chartLabels =  getLastSixMonths(new Date());
   }
 
   ngOnDestroy() {
