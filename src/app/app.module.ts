@@ -78,6 +78,7 @@ import { AdminDashSettingsComponent } from './modules/admin/admin-dash/pages/adm
 import { AdminPassengerPaymentsDetailsComponent } from './modules/admin/admin-passenger-payments-details/admin-passenger-payments-details.component';
 import { AdminDriverPaymentsDetailsComponent } from './modules/admin/admin-dash/admin-driver-payments-details/admin-driver-payments-details.component';
 import { AdminIncomeDetailsComponent } from './modules/admin/admin-income-details/admin-income-details.component';
+import { AdminDriverDetailsPopupComponent } from './modules/admin/admin-driver-details-popup/admin-driver-details-popup.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { AdminIncomeDetailsComponent } from './modules/admin/admin-income-detail
     AdminPassengerPaymentsDetailsComponent,
     AdminDriverPaymentsDetailsComponent,
     AdminIncomeDetailsComponent,
+    AdminDriverDetailsPopupComponent,
   ],
   imports: [
     BrowserModule,

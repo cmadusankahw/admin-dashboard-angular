@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   headerDetails: {userType:string, userName: string, profilePic: string} = {
     userType:"admin",
     userName:"Test",
-    profilePic:"./assets/images/merchant/nopic.png"
+    profilePic:"./assets/images/merchant/user.jpg"
   };
 
 

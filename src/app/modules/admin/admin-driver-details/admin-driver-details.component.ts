@@ -5,8 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Subscription } from 'rxjs';
-import { IdVerifications } from '../../auth/auth.model';
-import { AuthService } from '../../auth/auth.service';
+import { Driver } from '../admin.model';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin-driver-details',
@@ -15,42 +15,83 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class AdminDriverDetailsComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['user_id', 'issuer', 'action'];
-  dataSource: MatTableDataSource<IdVerifications>;
+  displayedColumns: string[] = ['profilePic', 'driverName', 'action'];
+  dataSource: MatTableDataSource<Driver>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   // subscritions
 
-  private verifySub: Subscription;
+  private driverSub: Subscription;
 
-  idVerifications: IdVerifications[] = [];
+  drivers: Driver[] = [
+    {
+      driverId: 'D01',
+      driverName: 'Chiran HW',
+      driverContactNo: '0778956789',
+      driverEmail: 'abc@gmail.com',
+      profilePic: './assets/images/merchant/user.jpg',
+      pickup: 'Matara',
+      dropoff: 'Colombo',
+      driverRegDate: '2021-01-23',
+      vehicleNo: 'CAF2345',
+      vehicleType: 'Car',
+      noOfSeats: 4,
+      availableSeats: 3,
+      ACType: 'AC',
+      vehiclePhotos: {
+        image1: './assets/images/merchant/nopic.png',
+        image2: './assets/images/merchant/nopic.png',
+        image3: './assets/images/merchant/nopic.png',
+        image4: './assets/images/merchant/nopic.png',
+        image5: './assets/images/merchant/nopic.png',
+        image6: './assets/images/merchant/nopic.png'
+      },
+      NICPhotos: {
+        front: './assets/images/merchant/nopic.png',
+        back: './assets/images/merchant/nopic.png',
+      },
+      driverLicensePhotos: {
+        front: './assets/images/merchant/nopic.png',
+        back: './assets/images/merchant/nopic.png',
+      },
+      revenueLicensePhotos: {
+        front: './assets/images/merchant/nopic.png',
+        back: './assets/images/merchant/nopic.png',
+      },
+      insurrencePhotos: {
+        front: './assets/images/merchant/nopic.png',
+        back: './assets/images/merchant/nopic.png',
+      },
+      bankBookPhoto: './assets/images/merchant/nopic.png',
+      status: ' pending'
+    },
+  ];
 
-  selectedVerification: IdVerifications;
+  driver: Driver;
 
-  constructor( private authService: AuthService) { }
+  constructor( private adminService: AdminService) { }
 
   ngOnInit() {
-       // get admin for child comp use
-   this.authService.getIDVerifications();
-   this.verifySub = this.authService.getIDVerificationsUpdateListener().subscribe(
-     res => {
-       if (res) {
-         this.idVerifications = res;
-         console.log(this.idVerifications);
-         this.dataSource = new MatTableDataSource(this.idVerifications);
+    // get admin for child comp use
+  //  this.adminService.getNewDrivers(1);
+  //  this.driverSub = this.adminService.getDriversUpdateListener().subscribe(
+  //    res => {
+  //      if (res) {
+  //        this.drivers = res;
+         this.dataSource = new MatTableDataSource(this.drivers);
          this.dataSource.paginator = this.paginator;
          this.dataSource.sort = this.sort;
-      }
-     });
+  //     }
+  //    });
   }
 
 
   ngOnDestroy() {
 
-    if (this.verifySub) {
-      this.verifySub.unsubscribe();
+    if (this.driverSub) {
+      this.driverSub.unsubscribe();
     }
   }
 
@@ -64,17 +105,14 @@ export class AdminDriverDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // get selected
-  showUsertDetails(id: string) {
-    for (const app of this.idVerifications) {
-      if (app.user_id === id) {
-        this.selectedVerification = app;
+  // get selected driver details
+  showUsertDetails(driverId: string) {
+    for (const app of this.drivers) {
+      if (app.driverId === driverId) {
+        this.driver = app;
       }
     }
   }
 
-  verifyID(id: IdVerifications){
-    this.authService.approveIDVerification(id);
-  }
 
 }

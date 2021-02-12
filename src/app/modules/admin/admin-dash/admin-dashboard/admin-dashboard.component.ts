@@ -30,7 +30,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   headerDetails: {userType: string, userName: string, profilePic: string} =  {
     userType:"admin",
     userName:"Test",
-    profilePic:"./assets/images/merchant/nopic.png"
+    profilePic:"./assets/images/merchant/user.jpg"
   };
 
    // create new product
@@ -49,8 +49,6 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
              private router: Router, private authService: AuthService) { }
 
  ngOnInit() {
-
-
    this.routerEvents();
    this.authService.getHeaderDetails();
    this.headerSubs = this.authService.getHeaderDetailsListener().subscribe (

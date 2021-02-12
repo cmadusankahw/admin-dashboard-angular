@@ -49,8 +49,6 @@ export interface Passenger {
   pickup: string;
   dropoff: string;
   passengerRegDate: string;
-  vehicleNo: string;
-  vehicleType: string;
   status: string;
 }
 
@@ -68,7 +66,8 @@ export interface Driver {
   noOfSeats: number;
   availableSeats: number;
   ACType: string;
-  NICPhotos: NICPhotos;
+  vehiclePhotos: VehiclePhotos;
+  NICPhotos: LegalDocument;
   driverLicensePhotos: LegalDocument;
   revenueLicensePhotos: LegalDocument;
   insurrencePhotos: LegalDocument
@@ -77,12 +76,13 @@ export interface Driver {
 }
 
 export interface DuePayment {
+  payId: string;
   driverId: string;
   driverName: string;
   passengerId: string;
   passengerName: string;
   driverProfilePic: string;
-  passenferProfilePic: string;
+  passengerProfilePic: string;
   passengerContactNo: string;
   driverContactNo: string; 
   dueDate: DateObj;
@@ -99,7 +99,7 @@ export interface DateObj {
   year: number;
 }
 
-export interface NICPhotos {
+export interface VehiclePhotos {
   image1: string;
   image2: string;
   image3: string;

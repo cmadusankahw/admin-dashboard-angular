@@ -45,7 +45,7 @@
 <!--admmin navbar-->
 <!--Navbar-->
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg sticky-top navbar-light warning scrolling-navbar"
+  SideClass="navbar navbar-expand-lg sticky-top navbar-light white scrolling-navbar"
   [containerInside]="false"
   *ngIf="userIsAuthenticated && headerDetails.userType === 'admin'"
 >
@@ -102,50 +102,34 @@
           <a
             class="dropdown-item waves-light mx-wd"
             mdbWavesEffect
+            routerLink="/admin/drivers"
+          >
+            <mdb-icon fas icon="user-friends"></mdb-icon>
+            &emsp; &emsp; Manage Drivers</a
+          >
+          <a
+            class="dropdown-item waves-light mx-wd"
+            mdbWavesEffect
+            routerLink="/admin/passengers"
+          >
+            <mdb-icon fas icon="user"></mdb-icon>
+            &emsp; &emsp; Manage Passengers</a
+          >
+          <a
+            class="dropdown-item waves-light mx-wd"
+            mdbWavesEffect
             routerLink="/admin/payments"
           >
             <mdb-icon fas icon="business-time"></mdb-icon>
-            &emsp; &emsp; Payments</a
+            &emsp; &emsp; Manage Payments</a
           >
           <a
             class="dropdown-item waves-light mx-wd"
             mdbWavesEffect
-            routerLink="/admin/users"
-          >
-            <mdb-icon fas icon="user-friends"></mdb-icon>
-            &emsp; &emsp; User Management</a
-          >
-          <a
-            class="dropdown-item waves-light mx-wd"
-            mdbWavesEffect
-            routerLink="/admin/categories"
+            routerLink="/admin/settings"
           >
             <mdb-icon fas icon="tasks"></mdb-icon>
-            &emsp; &emsp; Updates & Backups</a
-          >
-          <a
-            class="dropdown-item waves-light mx-wd"
-            mdbWavesEffect
-            routerLink="/admin/verify"
-          >
-            <mdb-icon fas icon="bookmark"></mdb-icon>
-            &emsp; &emsp; Verification requests</a
-          >
-          <a
-            class="dropdown-item waves-light mx-wd"
-            mdbWavesEffect
-            routerLink="/admin/reports"
-          >
-            <mdb-icon fas icon="tasks"></mdb-icon>
-            &emsp; &emsp; Report wizard</a
-          >
-          <a
-            class="dropdown-item waves-light mx-wd"
-            mdbWavesEffect
-            routerLink="/admin/profile"
-          >
-            <mdb-icon fas icon="user"></mdb-icon>
-            &emsp; &emsp; My Profile</a
+            &emsp; &emsp; My Settings</a
           >
           <hr />
           <a
@@ -155,7 +139,7 @@
             routerLink="/"
           >
             <mdb-icon fas icon="sign-out-alt"></mdb-icon>
-            &emsp; &emsp; Log out</a
+            &emsp; &emsp; Sign out</a
           >
         </div>
       </li>
