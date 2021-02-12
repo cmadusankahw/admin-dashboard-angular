@@ -5,8 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Subscription } from 'rxjs';
-import { Merchant } from '../../auth/auth.model';
-import { AuthService } from '../../auth/auth.service';
+import { Admin } from '../admin.model';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -15,49 +15,48 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class AdminUsersComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['user_id', 'user_type', 'name', 'email', 'business' , 'action'];
-  dataSource: MatTableDataSource<Merchant>;
+  displayedColumns: string[] = ['user_id', 'user_type', 'name', 'email', 'contact_no'];
+  dataSource: MatTableDataSource<Admin>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   // subscritions
-  private merchantSub: Subscription;
+  private adminSub: Subscription;
 
   // final merchants list
-  merchants: Merchant[] = [];
+  admins: Admin[] = [
+    {
+      userId: 'U01',
+      userName: 'Test',
+      userType: 'super-admin',
+      profilePic: './assets/images/merchant/user.jpg',
+      userEmail: 'abc@gmail.com',
+      userContactNo: '0776789078',
+      gender: 'male'
+    }
+  ];
 
-  // recieved state
-  @Input() userType = 'driver';
-
-  // payment arrays
-  recievedMerchants: Merchant[] = [];
-
-  // selected payment
-  selectedMerchant: Merchant;
-
-
-  constructor( private authService: AuthService) { }
+  constructor( private adminService: AdminService) { }
 
   ngOnInit() {
      // get admin for child comp use
-   this.authService.getMerchants();
-   this.merchantSub = this.authService.getMerchansUpdateListener().subscribe(
-     merchants => {
-       if (merchants) {
-         this.recievedMerchants = merchants;
-         console.log(this.recievedMerchants);
-         this.dataSource = new MatTableDataSource(this.addMerchants(this.recievedMerchants, this.userType));
+  //  this.adminService.getAdmins();
+  //  this.adminSub = this.adminService.getAdminsUpdateListener().subscribe(
+  //    res => {
+  //      if (res) {
+  //        this.admins = res;
+         this.dataSource = new MatTableDataSource(this.admins);
          this.dataSource.paginator = this.paginator;
          this.dataSource.sort = this.sort;
-      }
-     });
+    //   }
+    //  });
   }
 
   ngOnDestroy() {
 
-    if (this.merchantSub) {
-      this.merchantSub.unsubscribe();
+    if (this.adminSub) {
+      this.adminSub.unsubscribe();
     }
   }
 
@@ -72,30 +71,6 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
   }
 
 
-  // classify reieved merchant payments
-  addMerchants(merchants: Merchant[], userType: string): Merchant[] {
-    const pendingBookings = [];
-    for (const val of merchants) {
-      if (val.user_type === userType) {
-        pendingBookings.push(Object.assign({}, val));
-      }
-    }
-    this.merchants = [...pendingBookings];
-    return this.merchants;
-  }
-
-  // get selected payment details
-  showUsertDetails(userId: string) {
-    for (const app of this.merchants) {
-      if (app.user_id === userId) {
-        this.selectedMerchant = app;
-      }
-    }
-  }
-
-  removeMerchant(merchantId: string) {
-    this.authService.removeMerchant(merchantId);
-  }
 
 
 }

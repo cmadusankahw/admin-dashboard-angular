@@ -34,7 +34,7 @@ export class AdminDashPassengersComponent implements OnInit {
       pickup: 'Matara',
       dropoff: 'Colombo',
       passengerRegDate: '2021-01-23',
-      status: ' pending'
+      status: 'inactive'
     },
   ];
 

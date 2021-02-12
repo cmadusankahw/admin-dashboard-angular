@@ -220,7 +220,29 @@
         </div>
       </div>
 
-      <div class="modal-footer">
+      <div class="modal-footer" *ngIf="passenger">
+        <button
+          *ngIf="passenger.status == 'inactive'"
+          mdbBtn
+          color="green"
+          class="btn btn-sm"
+          (click)="idOptions.hide()"
+          mdbWavesEffect
+        >
+          Activate
+        </button>
+
+        <button
+          *ngIf="passenger.status == 'active'"
+          mdbBtn
+          color="red"
+          class="btn btn-sm"
+          (click)="idOptions.hide()"
+          mdbWavesEffect
+        >
+          Deactivate
+        </button>
+
         <button
           mdbBtn
           color="dark"

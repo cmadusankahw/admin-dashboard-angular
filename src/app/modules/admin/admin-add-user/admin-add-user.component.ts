@@ -3,8 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import {Merchant, MerchantTemp } from '../../auth/auth.model';
-import { AuthService } from '../../auth/auth.service';
+import { AdminService } from '../admin.service';
+import { Admin } from '../admin.model';
 
 
 @Component({
@@ -14,15 +14,9 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class AdminAddUserComponent implements OnInit, OnDestroy {
 
-
-  // registered merchant
-  merchantTemp: MerchantTemp;
-
-
-
   constructor(private router: Router,
               public datepipe: DatePipe,
-              public authService: AuthService) { }
+              public adminService: AdminService) { }
 
   ngOnInit() {
     // get merchant temp
@@ -40,37 +34,24 @@ export class AdminAddUserComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  // signup user
-  signupUser(signupForm: NgForm) {
+   signupUser(signupForm: NgForm) {
     if (signupForm.invalid) {
       console.log('Form Invalid');
     } else {
-
-      const merchant: Merchant = {
-          user_id: this.merchantTemp.user_id,
-          user_type: signupForm.value.user_type,
-          first_name: this.merchantTemp.first_name,
-          last_name: this.merchantTemp.last_name,
-          nic: signupForm.value.nic,
-          profile_pic: './assets/images/merchant/nopic.png',
-          email: this.merchantTemp.email,
-          contact_no: this.merchantTemp.contact_no,
-          address_line1:  signupForm.value.address1,
-          address_line2: signupForm.value.address2,
-          postal_code: signupForm.value.postalCode,
-          gender: signupForm.value.gender,
-          date_of_birth: signupForm.value.birthday,  // check
-          id_verification: {isverified: false, id_sideA: null, id_sideB: null, issuer: null},
-          reg_date: this.merchantTemp.reg_date,
-          business: null
+      const admin: Admin = {
+        userId: '',
+        userType: signupForm.value.user_type,
+        userName: signupForm.value.user_name,
+        profilePic: './assets/images/merchant/nopic.png',
+        userEmail: signupForm.value.email,
+        userContactNo: signupForm.value.contact_no,
+        gender: signupForm.value.gender,
         };
-      console.log(merchant);
-      this.authService.addMerchant(merchant, this.merchantTemp.password);
+      this.adminService.createAdmin(admin);
+      console.log('User created successfully!');
       signupForm.resetForm();
-      this.router.navigate(['/']);
     }
   }
-
 
 
 }

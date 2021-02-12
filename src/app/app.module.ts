@@ -26,19 +26,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatDialogModule } from '@angular/material';
-import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NgbModule, NgbDropdownModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import {MatSliderModule} from '@angular/material/slider';
 import { DatePipe } from '@angular/common';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { QuillModule } from 'ngx-quill';
-import { QRCodeModule } from 'angularx-qrcode';
 import {MatTabsModule} from '@angular/material/tabs';
 
 
@@ -48,8 +44,6 @@ import { HeaderComponent } from './modules/auth/header/header.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { FooterComponent } from './modules/home/footer/footer.component';
 import { AdminAddUserComponent } from './modules/admin/admin-add-user/admin-add-user.component';
-import { CardDetailsComponent } from './modules/auth/card-details/card-details.component';
-import { IdVerifyComponent } from './modules/auth/id-verify/id-verify.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -73,7 +67,6 @@ import { AdminUsersPieChartComponent } from './modules/admin/admin-dash/charts/a
 import { AdminDriverDetailsComponent } from './modules/admin/admin-driver-details/admin-driver-details.component';
 import { AdminDashStatComponent } from './modules/admin/admin-dash/admin-dash-stat/admin-dash-stat.component';
 import { AdminPaymentDetailsComponent } from './modules/admin/admin-payment-details/admin-payment-details.component';
-import { AdminPassengerDetailsComponent } from './modules/admin/admin-passenger-details/admin-passenger-details.component';
 import { AdminDashSettingsComponent } from './modules/admin/admin-dash/pages/admin-dash-settings/admin-dash-settings.component';
 import { AdminPassengerPaymentsDetailsComponent } from './modules/admin/admin-passenger-payments-details/admin-passenger-payments-details.component';
 import { AdminDriverPaymentsDetailsComponent } from './modules/admin/admin-dash/admin-driver-payments-details/admin-driver-payments-details.component';
@@ -87,8 +80,6 @@ import { AdminDriverDetailsPopupComponent } from './modules/admin/admin-driver-d
     LoginComponent,
     FooterComponent,
     AdminAddUserComponent,
-    CardDetailsComponent,
-    IdVerifyComponent,
     AdminUserProfileComponent,
     ContactUsComponent,
     NotFoundPageComponent,
@@ -107,7 +98,6 @@ import { AdminDriverDetailsPopupComponent } from './modules/admin/admin-driver-d
     AdminDriverDetailsComponent,
     AdminPaymentDetailsComponent,
     AdminDashStatComponent,
-    AdminPassengerDetailsComponent,
     AdminDashSettingsComponent,
     AdminPassengerPaymentsDetailsComponent,
     AdminDriverPaymentsDetailsComponent,
@@ -140,7 +130,6 @@ import { AdminDriverDetailsPopupComponent } from './modules/admin/admin-driver-d
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CreditCardDirectivesModule,
     ModalModule,
     MatSidenavModule,
     LayoutModule,
@@ -153,16 +142,13 @@ import { AdminDriverDetailsPopupComponent } from './modules/admin/admin-driver-d
     MatProgressBarModule,
     NgbModule,
     MatCheckboxModule,
-    FullCalendarModule,
     CarouselModule,
     MatSliderModule,
     MatDialogModule,
     NgbDropdownModule,
     DragDropModule,
     NgbProgressbarModule,
-    QRCodeModule,
     MatTabsModule,
-    QuillModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [

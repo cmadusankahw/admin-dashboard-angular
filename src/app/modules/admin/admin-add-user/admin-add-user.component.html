@@ -54,18 +54,19 @@
         <mat-form-field class="mfield">
           <input
             matInput
-            placeholder="Your NIC"
+            placeholder="Enter User Contact No"
             required
-            pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$"
-            name="nic"
-            #nic="ngModel"
+            name="contact_no"
+            #contact_no="ngModel"
             ngModel
           />
-          <mat-error *ngIf="nic.invalid">Please Provide a valid NIC</mat-error>
+          <mat-error *ngIf="contact_no.invalid"
+            >Please Provide a Contact No</mat-error
+          >
         </mat-form-field>
 
         <mat-form-field class="mfield">
-          <mat-label>Your Gender</mat-label>
+          <mat-label>Select User Gender</mat-label>
           <mat-select required name="gender" #gender="ngModel" ngModel>
             <mat-option value="male">Male</mat-option>
             <mat-option value="female">Female</mat-option>

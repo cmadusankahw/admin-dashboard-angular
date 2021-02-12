@@ -73,8 +73,7 @@ export class AdminDashDriversComponent implements OnInit {
   constructor( private adminService: AdminService) { }
 
   ngOnInit() {
-    // get admin for child comp use
-  //  this.adminService.getNewDrivers(1);
+  //  this.adminService.getDrivers();
   //  this.driverSub = this.adminService.getDriversUpdateListener().subscribe(
   //    res => {
   //      if (res) {

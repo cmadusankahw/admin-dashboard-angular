@@ -1,113 +1,46 @@
 <!--Business Profile View-->
 <div class="card mt-4 container-fluid" *ngIf="!editmode">
   <section class="dark-grey-text">
-    <!--customize profile section-->
-    <div class="row cust-row" *ngIf="isowner">
-      <div class="col-md-8">
-        <p>Need to change something? Customize your Profile.</p>
-      </div>
-      <div class="col-md-4">
-        <a
-          type="button"
-          mdbBtn
-          color="primary"
-          class="waves-light btn btn-md cust-btn"
-          (click)="editmode = !editmode"
-          mdbWavesEffect
-          >Customize Profile
-        </a>
-      </div>
-    </div>
-
     <!--profile header-->
-    <div class="container-fluid header-cls">
-      <div class="row f-image">
-        <img
-          src="./assets/images/back/uprofile.jpg"
-          alt="Profile Cover"
-          class="feature-img"
-        />
-      </div>
-      <div class="row logo-cls">
-        <div class="col-md-2">
+    <div class="container-fluid pt-3">
+      <div class="row" style="display: flex; align-items: center">
+        <div class="col-md-3">
           <img
-            src="{{ serviceProvider ? serviceProvider.profile_pic : imageUrl }}"
+            src="{{ admin ? admin.profilePic : imageUrl }}"
             alt="User Pic"
             class="img-thumbnail logo-img"
           />
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9">
           <h2 class="txt-title">
-            {{ serviceProvider ? serviceProvider.first_name : "Loading..." }}
-            {{ serviceProvider ? serviceProvider.last_name : " Loading..." }}
+            {{ admin ? admin.userName : "Loading..." }}
           </h2>
         </div>
       </div>
 
       <!-- profile content-->
       <div class="page-content">
-        <div class="content-title">Personal Details</div>
         <hr />
 
         <!--row 1-->
         <div class="row">
           <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="user"></mdb-icon> <span> Your NIC </span>
+            <mdb-icon fas icon="envelope"></mdb-icon> <span> User ID </span>
           </div>
 
           <div class="col-md-7 profile-text">
-            <span>
-              {{ serviceProvider ? serviceProvider.nic : "Loading..." }}</span
-            >
+            <span> {{ admin ? admin.userId : "Loading..." }}</span>
           </div>
         </div>
+
         <!--row 1-->
         <div class="row div-content">
           <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="envelope"></mdb-icon> <span> Your Email </span>
-            <br />
-            <p class="infotxt">This is your Personal email-address</p>
+            <mdb-icon fas icon="envelope"></mdb-icon> <span> Email </span>
           </div>
 
           <div class="col-md-7 profile-text">
-            <span>
-              {{ serviceProvider ? serviceProvider.email : "Loading..." }}</span
-            >
-          </div>
-        </div>
-
-        <!--row 2-->
-        <div class="row">
-          <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="phone"></mdb-icon>
-            <span> Your Contact No </span>
-            <br />
-            <p class="infotxt">
-              This number will be used for two-factor authentication
-            </p>
-          </div>
-
-          <div class="col-md-7 profile-text">
-            <span>
-              {{
-                serviceProvider ? serviceProvider.contact_no : "Loading..."
-              }}</span
-            >
-          </div>
-        </div>
-
-        <!--row 2-->
-        <div class="row">
-          <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="mercury"></mdb-icon> <span> Gender</span>
-          </div>
-
-          <div class="col-md-7 profile-text">
-            <span>
-              {{
-                serviceProvider ? serviceProvider.gender : "Loading..."
-              }}</span
-            >
+            <span> {{ admin ? admin.userEmail : "Loading..." }}</span>
           </div>
         </div>
 
@@ -115,102 +48,70 @@
         <div class="row div-content">
           <div class="col-md-5 inst-text">
             <mdb-icon fas icon="birthday-cake"></mdb-icon>
-            <span> Date of Birth</span>
+            <span> Admin Type</span>
           </div>
 
           <div class="col-md-7 profile-text">
-            <span>
-              {{
-                serviceProvider
-                  ? serviceProvider.date_of_birth.slice(0, 10)
-                  : "Loading..."
-              }}</span
-            >
+            <span> {{ admin ? admin.userType : "Loading..." }}</span>
           </div>
         </div>
 
         <!--row 2-->
         <div class="row div-content">
           <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="home"></mdb-icon> <span> Postal Address </span>
-            <br />
-            <p class="infotxt">
-              This address will be used for postal communications.
-            </p>
+            <mdb-icon fas icon="phone"></mdb-icon>
+            <span> Contact No </span>
           </div>
 
           <div class="col-md-7 profile-text">
-            <span>
-              {{
-                serviceProvider ? serviceProvider.address_line1 : "Loading..."
-              }}</span
-            >
-            <br />
-            <span>
-              {{
-                serviceProvider ? serviceProvider.address_line2 : " Loading..."
-              }}</span
-            >
-            <br />
-            <span>
-              {{
-                serviceProvider ? serviceProvider.postal_code : " Loading..."
-              }}</span
-            >
+            <span> {{ admin ? admin.userContactNo : "Loading..." }}</span>
           </div>
         </div>
-        <br />
-        <div class="content-title">Account Details</div>
-        <hr />
-        <!--row 3-->
-        <div class="row">
+
+        <!--row 2-->
+        <div class="row div-content">
           <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="user"></mdb-icon> <span> Account Type </span>
+            <mdb-icon fas icon="mercury"></mdb-icon> <span> Gender</span>
           </div>
 
           <div class="col-md-7 profile-text">
-            <span>
-              {{ serviceProvider ? serviceProvider.user_type : "Loading..." }}
-            </span>
+            <span> {{ admin ? admin.gender : "Loading..." }}</span>
           </div>
         </div>
 
         <!--row 4-->
         <div class="row div-content">
-          <div class="col-md-5 inst-text">
+          <div class="col-md-5 inst-text" style="padding-bottom: 100px">
             <mdb-icon fas icon="key"></mdb-icon> <span> Password </span>
           </div>
 
           <div class="col-md-7 profile-text">
             <span> ******* </span>
+          </div>
+          <br />
+          <div class="btn-gr">
+            <hr />
             <a
               type="button"
               mdbBtn
-              color="secondary"
+              color="green"
+              outline="yes"
               class="waves-light btn btn-md cust-btn btn-lm"
               mdbWavesEffect
               (click)="changePassword.show()"
             >
               Change Password
             </a>
-          </div>
-        </div>
-
-        <!--row 3-->
-        <div class="row div-content">
-          <div class="col-md-5 inst-text">
-            <mdb-icon fas icon="calendar-check"></mdb-icon>
-            <span> Account Created Date </span>
-          </div>
-
-          <div class="col-md-7 profile-text">
-            <span>
-              {{
-                serviceProvider
-                  ? serviceProvider.reg_date.slice(0, 10)
-                  : "Loading..."
-              }}</span
-            >
+            <a
+              type="button"
+              mdbBtn
+              color="dark"
+              outline="yes"
+              class="btn btn-md mt-2"
+              (click)="editmode = !editmode"
+              mdbWavesEffect
+              >Customize Profile
+            </a>
           </div>
         </div>
         <hr />
@@ -229,20 +130,17 @@
     <section class="dark-grey-text">
       <!--edit content-->
       <div class="pd-top-min text-center">
-        <div class="content-title page-content">Edit Personal Details</div>
-
-        <hr />
         <!--row1-->
         <div class="row">
-          <div class="col-md-3 inst-text">
+          <div class="col-md-4 inst-text">
             <mdb-icon fas icon="award"></mdb-icon>
             <span> Change Profile Picture: </span>
           </div>
 
-          <div class="col-md-3 text-center">
+          <div class="col-md-4 text-center">
             <a role="button" mdbWavesEffect (click)="img.click()">
               <img
-                [src]="image ? imageUrl : serviceProvider.profile_pic"
+                [src]="image ? imageUrl : admin.profilePic"
                 alt="Profile Picture"
                 class="img-thumbnail logo-img-edit"
               />
@@ -257,94 +155,45 @@
               accept="image/*"
               (change)="onImageUploaded($event)"
             />
-            <p><b>Click to Upload</b></p>
           </div>
         </div>
 
+        <hr />
+        <br />
+
         <div class="row page-content">
-          <div class="col-md-3 inst-text">
+          <div class="col-md-4 inst-text">
             <mdb-icon fas icon="file-signature"></mdb-icon>
             <span> Your Name: </span>
           </div>
 
           <div class="col-md-7 text-center">
-            <div class="row">
-              <div class="col-md-6">
-                <mat-form-field class="service-full-width">
-                  <mat-label>First Name </mat-label>
-                  <input
-                    matInput
-                    [ngModel]="serviceProvider.first_name"
-                    required
-                    name="first_name"
-                    #firstName="ngModel"
-                  />
-                  <mat-error *ngIf="firstName.invalid"
-                    >Please enter your first name</mat-error
-                  >
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field class="service-full-width">
-                  <mat-label>Last Name </mat-label>
-                  <input
-                    matInput
-                    [ngModel]="serviceProvider.last_name"
-                    required
-                    #lastName="ngModel"
-                    name="last_name"
-                  />
-                  <mat-error *ngIf="lastName.invalid"
-                    >Please enter your last name</mat-error
-                  >
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--row 2-->
-        <div class="row page-content">
-          <div class="col-md-3 inst-text">
-            <mdb-icon fas icon="user"></mdb-icon> <span> NIC:</span>
-            <p class="infotxt">If modified, re-ID verification required</p>
-          </div>
-
-          <div class="col-md-7 text-center">
             <mat-form-field class="service-full-width">
-              <mat-label>NIC Here </mat-label>
               <input
                 matInput
-                [ngModel]="serviceProvider.nic"
+                [ngModel]="admin.userName"
                 required
-                #nic="ngModel"
-                name="nic"
-                pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$"
+                name="user_name"
+                #userName="ngModel"
               />
-              <mat-error *ngIf="nic.invalid"
-                >Please enter a valid NIC</mat-error
+              <mat-error *ngIf="userName.invalid"
+                >Please enter your name</mat-error
               >
             </mat-form-field>
           </div>
         </div>
-
         <!--row 2-->
-        <div class="row page-content">
-          <div class="col-md-3 inst-text">
+        <div class="row pt-3">
+          <div class="col-md-4 inst-text">
             <mdb-icon fas icon="envelope"></mdb-icon>
             <span> Email Address:</span>
-            <p class="infotxt">
-              Note: This will only change your personal email address. Your Sign
-              in address will remain same.
-            </p>
           </div>
 
           <div class="col-md-7 text-center">
             <mat-form-field class="service-full-width">
-              <mat-label>Email Address here </mat-label>
               <input
                 matInput
-                [ngModel]="serviceProvider.email"
+                [ngModel]="admin.userEmail"
                 required
                 type="email"
                 #email="ngModel"
@@ -360,20 +209,15 @@
 
         <!--row 2-->
         <div class="row page-content">
-          <div class="col-md-3 inst-text">
+          <div class="col-md-4 inst-text">
             <mdb-icon fas icon="phone"></mdb-icon> <span> Contact No:</span>
-            <p class="infotxt">
-              If modified, re-configuration of two-factor authentication is
-              required
-            </p>
           </div>
 
           <div class="col-md-7 text-center">
             <mat-form-field class="service-full-width">
-              <mat-label> Contact No here </mat-label>
               <input
                 matInput
-                [ngModel]="serviceProvider.contact_no"
+                [ngModel]="admin.userContactNo"
                 required
                 #contactNo="ngModel"
                 minlength="10"
@@ -388,8 +232,8 @@
         </div>
 
         <!--row 3-->
-        <div class="row page-content">
-          <div class="col-md-3 inst-text">
+        <div class="row page-content" style="padding-bottom: 120px">
+          <div class="col-md-4 inst-text">
             <mdb-icon fas icon="mercury"></mdb-icon> <span> Gender:</span>
           </div>
 
@@ -397,7 +241,7 @@
             <mat-form-field class="service-full-width">
               <mat-label>Select Gender</mat-label>
               <mat-select
-                [ngModel]="serviceProvider.gender"
+                [ngModel]="admin.gender"
                 required
                 ngModel
                 name="gender"
@@ -410,143 +254,16 @@
           </div>
         </div>
 
-        <!--row 4-->
-        <div class="row page-content">
-          <div class="col-md-3 inst-text">
-            <mdb-icon fas icon="birthday-cake"></mdb-icon>
-            <span> Date of Birth:</span>
-          </div>
-
-          <div class="col-md-7 text-center">
-            <mat-form-field class="service-full-width">
-              <mat-label> Select Your Birthday </mat-label>
-              <input
-                matInput
-                [matDatepicker]="picker"
-                required
-                name="date_of_birth"
-                [ngModel]="serviceProvider.date_of_birth"
-                #birthday="ngModel"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker
-                #picker
-                [startAt]="serviceProvider.date_of_birth"
-              ></mat-datepicker>
-              <mat-error *ngIf="birthday.invalid"
-                >Please select your Birthday</mat-error
-              >
-            </mat-form-field>
-          </div>
-        </div>
-
-        <!--row 6-->
-        <div class="row page-content">
-          <div class="col-md-3 inst-text">
-            <mdb-icon fas icon="home"></mdb-icon> <span> Postal Address:</span>
-            <p class="infotxt">
-              This address will be used to postal communication
-            </p>
-          </div>
-
-          <div class="col-md-7 text-center">
-            <mat-form-field class="service-full-width">
-              <mat-label>Address Line 1 </mat-label>
-              <input
-                matInput
-                [ngModel]="serviceProvider.address_line1"
-                required
-                name="address_line1"
-                #addressLine1="ngModel"
-                ngModel
-              />
-              <mat-error *ngIf="addressLine1.invalid"
-                >Address must be provided</mat-error
-              >
-            </mat-form-field>
-            <mat-form-field class="service-full-width">
-              <mat-label>Address Line 2 </mat-label>
-              <input
-                matInput
-                [ngModel]="serviceProvider.address_line2"
-                name="address_line2"
-                ngModel
-              />
-            </mat-form-field>
-            <mat-form-field class="service-full-width">
-              <mat-label>Postal Code </mat-label>
-              <input
-                matInput
-                [ngModel]="serviceProvider.postal_code"
-                required
-                name="postal_code"
-                #postalCode="ngModel"
-                ngModel
-              />
-              <mat-error *ngIf="postalCode.invalid"
-                >Postal Code must be provided</mat-error
-              >
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="content-title page-content">Change Account Settings</div>
-
         <hr />
-        <!--row 4-->
-        <div class="row page-content">
-          <div class="col-md-3 inst-text">
-            <mdb-icon fas icon="check-circle"></mdb-icon>
-            <span> Verification Status:</span>
-            <br />
-            <p class="infotxt">
-              To create and manage a business, Identity need to be verified.
-            </p>
-          </div>
-
-          <div class="col-md-7 text-center">
-            <div
-              class="verify-stat text-center"
-              *ngIf="serviceProvider.id_verification.isverified"
-            >
-              <mdb-icon far icon="check-circle"> </mdb-icon> Identity Verified
-            </div>
-            <div
-              class="verify-stat text-center"
-              *ngIf="!serviceProvider.id_verification.isverified"
-              style="color: darkred"
-            >
-              <mdb-icon far icon="times-circle"></mdb-icon> Identity Not
-              Verified
-              <br />
-              <a
-                type="button"
-                mdbBtn
-                color="secondary"
-                class="waves-light btn btn-md btn-edt"
-                mdbWavesEffect
-                outline="yes"
-                (click)="idVerify.show()"
-              >
-                Verify Identity</a
-              >
-            </div>
-          </div>
-        </div>
-        <hr />
-        <br />
       </div>
     </section>
 
     <!--save buttons-->
-    <div class="text-center">
+    <div class="text-center pb-3">
       <button
         type="button"
         mdbBtn
-        color="secondary"
+        color="green"
         class="waves-light btn btn-md cust-btn btn-tab"
         mdbWavesEffect
         type="submit"
@@ -556,7 +273,7 @@
       <button
         type="button"
         mdbBtn
-        color="secondary"
+        color="green"
         class="waves-light btn btn-md cust-btn btn-tab"
         mdbWavesEffect
         outline="yes"
@@ -566,6 +283,7 @@
         Discard
       </button>
     </div>
+    <hr />
   </form>
 </div>
 
@@ -677,7 +395,7 @@
           <button
             mdbBtn
             class="btn btn-md"
-            color="secondary"
+            color="green"
             type="submit"
             mdbWavesEffect
           >
@@ -686,7 +404,7 @@
           <button
             mdbBtn
             class="btn btn-md"
-            color="secondary"
+            color="green"
             outline="yes"
             (click)="changePassword.hide()"
             mdbWavesEffect
@@ -697,45 +415,4 @@
       </div>
     </div>
   </form>
-</div>
-
-<!--verify id Modal-->
-<div
-  mdbModal
-  #idVerify="mdbModal"
-  class="modal fade"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myBasicModalLabel"
-  [config]="{ backdrop: false, ignoreBackdropClick: true }"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered"
-    role="document"
-    style="overflow-y: initial !important"
-  >
-    <div class="modal-content">
-      <div class="modal-header">
-        <button
-          type="button"
-          class="close pull-right"
-          aria-label="Close"
-          (click)="idVerify.hide()"
-        >
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Verify Identity</h4>
-      </div>
-      <div class="modal-body" style="height: 400px; overflow-y: auto">
-        <app-id-verify></app-id-verify>
-      </div>
-
-      <div class="modal-footer">
-        <button mdbBtn color="link" (click)="idVerify.hide()" mdbWavesEffect>
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
 </div>

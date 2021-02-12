@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/modules/auth/auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router} from '@angular/router';
 
 
 import { ErrorComponent } from 'src/app/error/error.component';
 import { DatePipe } from '@angular/common';
-import { Merchant } from '../../auth/auth.model';
+import { AdminService } from '../admin.service';
+import { Admin } from '../admin.model';
 
 
 @Component({
@@ -18,38 +18,44 @@ import { Merchant } from '../../auth/auth.model';
 })
 export class AdminUserProfileComponent implements OnInit, OnDestroy {
 
-  private merchantSubs: Subscription;
+  private adminSubs: Subscription;
 
   // edit profile mode
   editmode = false;
 
-  // enabling ctomization only if it is the owner
-  @Input() isowner: boolean;
-
   // bprofile data binding
-  serviceProvider: Merchant;
+  admin: Admin = {
+    userId: 'U01',
+    userName: 'Test',
+    userType: 'super-admin',
+    profilePic: './assets/images/merchant/user.jpg',
+    userEmail: 'abc@gmail.com',
+    userContactNo: '0776789078',
+    gender: 'male'
+  }
+
 
    // image to upload
    image: File;
    imageUrl: any = './assets/images/merchant/nopic.png';
 
 
-  constructor(private authService: AuthService,
+  constructor(private adminService: AdminService,
               public dialog: MatDialog,
               public datepipe: DatePipe,
               private router: Router) { }
 
   ngOnInit() {
-    // this.authService.getMerchant();
-    // this.merchantSubs = this.authService.getMerchantUpdateListener().subscribe (
-    //   merchant => {
-    //       this.serviceProvider = merchant;
+    // this.adminService.getAdmin();
+    // this.adminSubs = this.authService.getAdminUpdatteListener().subscribe (
+    //   admin => {
+    //       this.admin = admin;
     //   });
   }
 
   ngOnDestroy() {
-    if (this.merchantSubs) {
-      this.merchantSubs.unsubscribe();
+    if (this.adminSubs) {
+      this.adminSubs.unsubscribe();
     }
     this.imageUrl = './assets/images/merchant/nopic.png';
     this.image = null;
@@ -70,43 +76,23 @@ export class AdminUserProfileComponent implements OnInit, OnDestroy {
     if (editForm.invalid) {
       console.log('Form Invalid');
     } else {
-      const merchant: Merchant = {
-        user_id: this.serviceProvider.user_id,
-        user_type: this.serviceProvider.user_type,
-        nic: editForm.value.nic,
-        first_name: editForm.value.first_name,
-        last_name: editForm.value.last_name,
-        profile_pic: this.serviceProvider.profile_pic,
-        email: editForm.value.email,
-        contact_no: editForm.value.contact_no,
-        address_line1: editForm.value.address_line1,
-        address_line2: editForm.value.address_line2,
-        postal_code: editForm.value.postal_code,
+      const admin: Admin = {
+        userId: this.admin.userId,
+        userType: editForm.value.user_type,
+        userName: editForm.value.user_name,
+        profilePic: this.admin.profilePic,
+        userEmail: editForm.value.email,
+        userContactNo: editForm.value.contact_no,
         gender: editForm.value.gender,
-        date_of_birth: editForm.value.date_of_birth,
-        reg_date: this.serviceProvider.reg_date,
-        id_verification: this.serviceProvider.id_verification,
-        business: this.serviceProvider.business
         };
-      this.authService.updateMerchant(merchant, this.image);
-      this.merchantSubs = this.authService.getMerchantUpdateListener()
-      .subscribe((recievedMerchant: Merchant) => {
-        console.log(recievedMerchant);
-        this.serviceProvider = recievedMerchant;
+      this.adminService.updateAdmin(admin, this.image);
+      this.adminSubs = this.adminService.getAdminUpdateListener()
+      .subscribe((res) => {
+        this.admin = res;
       });
-      console.log('Merchant updated successfully!');
+      console.log('Admin details updated successfully!');
       editForm.resetForm();
       this.editmode = false;
-      setTimeout(() => {
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        if (this.serviceProvider.user_type === 'serviceProvider'){
-          this.router.navigate(['/sp/dash/profile']);
-        }
-        if (this.serviceProvider.user_type === 'seller'){
-          this.router.navigate(['/sel/dash/profile']);
-        }
-      }, 1200);
     }
   }
 

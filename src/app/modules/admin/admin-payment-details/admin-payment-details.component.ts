@@ -95,46 +95,4 @@ export class AdminPaymentDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
-
-
-  // // classify reieved merchant payments
-  // addPayments(payments: DriverPayments[], state: string): DriverPayments[] {
-  //   const pendingBookings = [];
-  //   for (const val of payments) {
-  //     if (val.user_type === state) {
-  //       pendingBookings.push(Object.assign({}, val));
-  //     }
-  //   }
-  //   this.payments = [...pendingBookings];
-  //   return this.payments;
-  // }
-
-  // // get selected payment details
-  // showPaymentDetails(userId: string) {
-  //   for (const app of this.payments) {
-  //     if (app.user_id === userId) {
-  //       this.selectedPayment = app;
-  //     }
-  //   }
-  //   this.payDataSource = new MatTableDataSource(this.selectedPayment.pays);
-  //   this.payDataSource.paginator = this.paginator;
-  // }
-
-  // // get last payment details
-  // getLastPayData(payment: DriverPayments): PaymentData {
-  //   let lastPay: PaymentData;
-  //   for (var pay of payment.pays) {
-  //     lastPay = pay;
-  //   }
-  //   return lastPay;
-  // }
-
 }

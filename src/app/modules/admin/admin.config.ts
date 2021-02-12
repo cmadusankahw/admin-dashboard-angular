@@ -5,10 +5,16 @@ const getAdmins = "users/all";
 const getDashStat = "dash-counts";
 const duePayments = "due-payments";
 const duePayment = "due-payment";
-const getPayments = "payments";
+const getDriverPayments = "payments/driver";
+const getPassengerPayments = "payments/passenger";
 const getIncomes = "incomes";
 const newDrivers = "new-drivers";
-const getDrivers = "drivers"
-const getPassengers = "passengers"
+const getDrivers = "drivers";
+const getPassengers = "passengers";
 
-export {url, getAdmin, getDashStat, duePayments, getPayments, duePayment, newDrivers, getPassengers, getDrivers, getAdmins, getIncomes};
+const getAuthAdmin = 'auth/get/admin';
+const getHeader =  'auth/get/header';
+const getLastId = 'auth/last';
+const getSignIn = 'auth/signin';
+
+export {url, getAdmin, getDashStat, duePayments, getDriverPayments, getPassengerPayments, duePayment, newDrivers, getPassengers, getDrivers, getAdmins, getIncomes, getAuthAdmin, getHeader, getLastId, getSignIn};

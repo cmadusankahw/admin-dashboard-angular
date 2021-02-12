@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth/auth.service';
-import { Admin } from 'src/app/modules/auth/auth.model';
+import { Admin } from '../../admin.model';
 
 @Component({
   selector: 'app-admin-dashboard',

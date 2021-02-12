@@ -4,7 +4,7 @@ export interface Admin {
   userName: string;
   userType: string;
   profilePic: string;
-  useremail: string;
+  userEmail: string;
   userContactNo: string;
   gender: string;
 }
@@ -19,13 +19,15 @@ export interface Payment {
   payId: string;
   driverId: string;
   driverName: string;
-  vechicleNo: string;
+  driverContactNo: string;
+  vehicleNo: string;
   status: string;
   payDate: DateObj;
   payAmount: number;
   serviceCharge: number;
   passengerId: string;
   passengerName: string;
+  passengerContactNo: string;
 }
 
 export interface Income {

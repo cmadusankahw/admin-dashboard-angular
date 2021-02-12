@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { Admin } from '../auth/auth.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { SuccessComponent } from 'src/app/success/success.component';
-import { DashStat, Driver, DuePayment, Income, Passenger, Payment } from './admin.model';
-import {url, getAdmin, getDashStat, duePayments, duePayment, newDrivers, getDrivers,  getPassengers, getPayments, getAdmins, getIncomes} from './admin.config';
+import { Admin, DashStat, Driver, DuePayment, Income, Passenger, Payment } from './admin.model';
+import {url, getAdmin, getDashStat, duePayments, duePayment, newDrivers, getDrivers,  getPassengers, getDriverPayments, getPassengerPayments,  getAdmins, getIncomes} from './admin.config';
 
 @Injectable({providedIn: 'root'})
 export class AdminService {
@@ -15,8 +14,8 @@ export class AdminService {
   private duePaymentUpdated = new Subject<DuePayment>();
   private incomesUpdated = new Subject<Income[]>();
   private incomeUpdated = new Subject<Income>();
-  private paymentsUpdated = new Subject<Payment[]>();
-  private paymentUpdated = new Subject<Payment>();
+  private driverPaymentsUpdated = new Subject<Payment[]>();
+  private passengerPaymentsUpdated = new Subject<Payment[]>();
   private adminUpdated = new Subject<Admin>();
   private adminsUpdated = new Subject<Admin[]>();
   private dashStatUpdated = new Subject<DashStat>();
@@ -122,18 +121,18 @@ export class AdminService {
   }
 
   // payments page : driver/ passenger payments (depend on status)
-  getPayments() {
-    this.http.get<{payments: Payment[]}>(url + getPayments  )
+  getDriverPayments() {
+    this.http.get<{payments: Payment[]}>(url + getDriverPayments  )
     .subscribe((res) => {
-      this.paymentsUpdated.next(res.payments);
+      this.passengerPaymentsUpdated.next(res.payments);
     });
   }
 
   // payments page: payment details
-  getPayment(payId: string) {
-    this.http.get<{payment: Payment}>(url + getPayments +  '/' + payId  )
+  getPassengerPayments() {
+    this.http.get<{payments: Payment[]}>(url + getPassengerPayments  )
     .subscribe((res) => {
-      this.paymentUpdated.next(res.payment);
+      this.driverPaymentsUpdated.next(res.payments);
     });
   }
 
@@ -157,16 +156,58 @@ export class AdminService {
 
   // POST requests
 
-  // // collect sprovider payment
-  // makePayment(amount: number) {
-  //   this.http.post<{ message: string }>(this.url + 'admin/make/payment', {amount})
-  //   .subscribe((recievedData) => {
-  //     console.log(recievedData.message);
-  //     this.dialog.open(SuccessComponent, {data: {message: recievedData.message}});
-  // });
-  // }
+  updateAdmin(admin: Admin, image: File) {
+    // if (image) {
+    //   const newImage = new FormData();
+    //   newImage.append('images[]', image, image.name);
+  
+    //   this.http.post<{profile_pic: string}>(this.url + 'auth/admin/img', newImage )
+    //   .subscribe ((recievedImage) => {
+    //   console.log(recievedImage);
+    //   admin.profile_pic = recievedImage.profile_pic;
+    //   this.http.post<{message: string}>(this.url + 'auth/admin' , admin)
+    //   .subscribe((recievedData) => {
+    //     console.log(recievedData.message);
+    //     this.admin = admin;
+    //     this.adminUpdated.next(this.admin);
+    //     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    //     this.router.onSameUrlNavigation = 'reload';
+    //     this.router.navigate(['/admin/profile']);
+    //     this.dialog.open(SuccessComponent, {data: {message: 'Your Profile Details Updated Successfully!'}});
+    //   }, (error) => {
+    //     console.log(error);
+    //     });
+    //   });
+    // } else {
+    //   this.http.post<{message: string}>(this.url + 'auth/admin' , admin)
+    //   .subscribe((recievedData) => {
+    //     console.log(recievedData.message);
+    //     this.admin = admin;
+    //     this.adminUpdated.next(this.admin);
+    //     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    //     this.router.onSameUrlNavigation = 'reload';
+    //     this.router.navigate(['/admin/profile']);
+    //     this.dialog.open(SuccessComponent, {data: {message: 'Your Profile Details Updated Successfully!'}});
+    //   }, (error) => {
+    //     console.log(error);
+    //     });
+    //  }
+  }
 
-
+  createAdmin(admin: Admin) {
+     //   this.http.post<{message: string}>(this.url + 'auth/admin' , admin)
+    //   .subscribe((recievedData) => {
+    //     console.log(recievedData.message);
+    //     this.admin = admin;
+    //     this.adminUpdated.next(this.admin);
+    //     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    //     this.router.onSameUrlNavigation = 'reload';
+    //     this.router.navigate(['/admin/profile']);
+    //     this.dialog.open(SuccessComponent, {data: {message: 'Your Profile Details Updated Successfully!'}});
+    //   }, (error) => {
+    //     console.log(error);
+    //     });
+  }
 
   // listners for subjects
 
@@ -182,8 +223,8 @@ export class AdminService {
     return this.dashStatUpdated.asObservable();
   }
 
-  getPaymentsUpdateListener() {
-    return this.paymentsUpdated.asObservable();
+  getDriverPaymentsUpdateListener() {
+    return this.driverPaymentsUpdated.asObservable();
   }
 
   getDriversUpdateListener() {
@@ -202,8 +243,8 @@ export class AdminService {
     return this.passengerUpdated.asObservable();
   }
 
-  getPaymentUpdateListener() {
-    return this.paymentUpdated.asObservable();
+  getPassengerPaymentsUpdateListener() {
+    return this.passengerPaymentsUpdated.asObservable();
   }
 
   getDuePaymentUpdateListener() {
@@ -214,7 +255,7 @@ export class AdminService {
     return this.duePaymentsUpdated.asObservable();
   }
 
-  getDIncomesUpdateListener() {
+  getIncomesUpdateListener() {
     return this.incomesUpdated.asObservable();
   }
 
