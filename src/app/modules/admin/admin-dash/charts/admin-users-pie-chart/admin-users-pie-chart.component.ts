@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UsersData } from '../../../admin.model';
 
 @Component({
   selector: 'app-admin-users-pie-chart',
@@ -10,8 +9,6 @@ export class AdminUsersPieChartComponent implements OnInit {
 
 
   chartType = 'doughnut';
-
-  @Input() usersData: UsersData[];
 
   public chartDatasets: Array<any> = [
     { data: [0, 0  ], label: 'users' }
@@ -35,8 +32,6 @@ export class AdminUsersPieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.chartDatasets[0].data = [this.usersData[0].sellers ,
-    this.usersData[0].serviceProviders];
   }
 
 }

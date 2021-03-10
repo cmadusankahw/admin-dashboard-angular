@@ -1,0 +1,207 @@
+<div class="pd-top-min">
+  <h4>
+    <mat-icon>library_books</mat-icon>
+    <b> Due Payments</b>
+  </h4>
+  <mat-form-field>
+    <mat-label>
+      <mat-icon>search</mat-icon>
+      Search payments</mat-label
+    >
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Ranjith" />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table
+      class="table-responsive"
+      mat-table
+      [dataSource]="dataSource"
+      *ngIf="payments.length"
+    >
+      <ng-container matColumnDef="profilePic">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row">
+          <div class="driver-raw">
+            <img src="{{ row.driverProfilePic }}" class="profile-pic" />
+            <div class="driver-name">
+              {{ row.driverName }}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="driverName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row" style="text-align: left">
+          <div>Monthly Payment</div>
+          <div class="due-amount">Rs. {{ row.dueAmount }}</div>
+          <div class="pickup-dropoff">
+            Due on {{ row.dueDate.year }}/{{ row.dueDate.month }}/
+            {{ row.dueDate.date }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row" class="text-center">
+          <button
+            mdbBtn
+            color="green"
+            outline="yes"
+            class="btn btn-sm text-center"
+            (click)="showUsertDetails(row.payId)"
+            (click)="idOptions.show()"
+          >
+            View Details
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="text-center pd-top-min" *ngIf="!payments.length">
+      No Any Due Payments Found
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+  </div>
+</div>
+
+<!--View Details Modal-->
+<div
+  mdbModal
+  #idOptions="mdbModal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  [config]="{ backdrop: false, ignoreBackdropClick: true }"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    role="document"
+    style="overflow-y: initial !important"
+  >
+    <div class="modal-content" *ngIf="payment">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close pull-right"
+          aria-label="Close"
+          (click)="idOptions.hide()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Due Payment Details</h4>
+      </div>
+
+      <div class="modal-body" style="height: 450px; overflow-y: auto">
+        <div class="text-center top-text">
+          Due Date : {{ payment.dueDate.year }}/{{ payment.dueDate.month }}/{{
+            payment.dueDate.date
+          }}
+          <br />
+          Payment Status:
+          <span style="color: darkRed"> {{ payment.paymentStatus }} </span>
+        </div>
+
+        <div class="text-center">
+          <section class="text-center dark-grey-text">
+            <div class="info-text">From</div>
+            <div class="vehicle-details driver-raw">
+              <div class="col-md-3 text-center">
+                <img
+                  src="{{ payment.driverProfilePic }}"
+                  class="profile-pic-large"
+                />
+                <br />
+                {{ payment.driverId }}
+              </div>
+              <div class="col-md-9 driver-name-details">
+                <div class="driver-name-large">
+                  {{ payment.driverName }}
+                </div>
+                <div class="small-info">
+                  {{ payment.driverContactNo }}
+                </div>
+                <div class="small-info">
+                  {{ payment.pickup }} to {{ payment.dropoff }}
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <div class="info-text">To</div>
+
+            <div class="vehicle-details driver-raw">
+              <div class="col-md-3 text-center">
+                <img
+                  src="{{ payment.passengerProfilePic }}"
+                  class="profile-pic-large"
+                />
+                <br />
+                {{ payment.passengerId }}
+              </div>
+              <div class="col-md-9 driver-name-details">
+                <div class="driver-name-large">
+                  {{ payment.passengerName }}
+                </div>
+                <div class="small-info">
+                  {{ payment.passengerContactNo }}
+                </div>
+                <div class="small-info">
+                  {{ payment.pickup }} to {{ payment.dropoff }}
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <div class="vehicle-details text-center big-price">
+              Rs. {{ payment.dueAmount }}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          mdbBtn
+          class="btn btn-sm"
+          color="green"
+          (click)="idOptions.hide()"
+          mdbWavesEffect
+        >
+          Notify
+        </button>
+        <button
+          mdbBtn
+          class="btn btn-sm"
+          color="danger"
+          (click)="idOptions.hide()"
+          mdbWavesEffect
+        >
+          Block
+        </button>
+        <button
+          mdbBtn
+          color="dark"
+          outline="yes"
+          class="btn btn-sm"
+          (click)="idOptions.hide()"
+          mdbWavesEffect
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <div class="modal-content" *ngIf="!payment">
+      <app-not-found-page></app-not-found-page>
+    </div>
+  </div>
+</div>

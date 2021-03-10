@@ -1,0 +1,181 @@
+<!--more info-->
+<div class="text-center" *ngIf="driver">
+  <section class="text-center dark-grey-text">
+    <!--booking info-->
+    <div class="driver-raw">
+      <div class="col-md-3 text-center">
+        <img src="{{ driver.profilePic }}" class="profile-pic-large" />
+      </div>
+      <div class="col-md-9 driver-name-details">
+        <div class="driver-name-large">
+          {{ driver.driverName }}
+        </div>
+        <div class="small-info">
+          {{ driver.driverContactNo }}
+        </div>
+        <div class="small-info">
+          {{ driver.vehicleNo }}
+        </div>
+      </div>
+    </div>
+    <div class="vehicle-details">
+      <div class="driver-raw-new">
+        <div class="vehicle-type">
+          {{ driver.vehicleType }}
+        </div>
+        <div class="seat-details">
+          {{ driver.availableSeats }} seats Available
+        </div>
+        <div class="location">
+          {{ driver.pickup }}
+        </div>
+      </div>
+
+      <div class="driver-raw-new">
+        <div class="seat-details">
+          {{ driver.ACType }}
+        </div>
+        <div class="seat-details">{{ driver.noOfSeats }} seats</div>
+        <div class="location">
+          {{ driver.dropoff }}
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <div class="row">
+      <div class="col-md-2">
+        <img
+          src="{{ driver.VehiclePhotos.image1 }}"
+          style="width: 95%"
+          alt="Image 01"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          src="{{ driver.VehiclePhotos.image2 }}"
+          style="width: 95%"
+          alt="Image 02"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          src="{{ driver.VehiclePhotos.image3 }}"
+          style="width: 95%"
+          alt="Image 03"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          src="{{ driver.VehiclePhotos.image41 }}"
+          style="width: 95%"
+          alt="Image 04"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          src="{{ driver.VehiclePhotos.image5 }}"
+          style="width: 95%"
+          alt="Image 05"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          src="{{ driver.VehiclePhotos.image6 }}"
+          style="width: 95%"
+          alt="Image 06"
+        />
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="vehicle-details">
+      <p>NIC</p>
+      <div class="photo-raw">
+        <div>
+          <img
+            src="{{ driver.NICPhotos.front }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+
+        <div>
+          <img
+            src="{{ driver.NICPhotos.back }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="vehicle-details">
+      <p>Driver License</p>
+      <div class="photo-raw">
+        <div>
+          <img
+            src="{{ driver.driverLicensePhotos.front }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+
+        <div>
+          <img
+            src="{{ driver.driverLicensePhotos.back }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="vehicle-details">
+      <p>Revenue License</p>
+      <div class="photo-raw">
+        <div>
+          <img
+            src="{{ driver.revenueLicensePhotos.front }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+
+        <div>
+          <img
+            src="{{ driver.revenueLicensePhotos.back }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="vehicle-details">
+      <p>Vehicle Insurrance</p>
+      <div class="photo-raw">
+        <div>
+          <img
+            src="{{ driver.insurrencePhotos.front }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+
+        <div>
+          <img
+            src="{{ driver.insurrencePhotos.back }}"
+            style="width: 95%"
+            alt="Image 06"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="text-center" *ngIf="!driver">
+  <app-not-found-page></app-not-found-page>
+</div>

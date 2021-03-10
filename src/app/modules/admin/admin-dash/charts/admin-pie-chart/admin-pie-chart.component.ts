@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BookingData } from '../../../admin.model';
 
 @Component({
   selector: 'app-admin-pie-chart',
@@ -10,8 +9,6 @@ export class AdminPieChartComponent implements OnInit {
 
 
   chartType = 'pie';
-
-  @Input() bookingData: BookingData[];
 
   public chartDatasets: Array<any> = [
     { data: [0, 0, 0 ], label: 'bookings' }
@@ -35,9 +32,6 @@ export class AdminPieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.chartDatasets[0].data = [this.bookingData[0].pending ,
-    this.bookingData[0].completed ,
-    this.bookingData[0].cancelled ];
   }
 
 }

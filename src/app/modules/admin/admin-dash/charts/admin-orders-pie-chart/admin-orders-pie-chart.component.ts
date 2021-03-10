@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OrderData } from '../../../admin.model';
 
 @Component({
   selector: 'app-admin-orders-pie-chart',
@@ -10,7 +9,6 @@ export class AdminOrdersPieChartComponent implements OnInit {
 
   chartType = 'pie';
 
-  @Input() orderData: OrderData[];
 
   public chartDatasets: Array<any> = [
     { data: [0, 0, 0 ], label: 'bookings' }
@@ -35,9 +33,6 @@ export class AdminOrdersPieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.chartDatasets[0].data = [this.orderData[0].pending ,
-    this.orderData[0].delivered ,
-    this.orderData[0].cancelled ];
   }
 
 }

@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
-
-import { Merchant, EventPlanner } from '../auth.model';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   headerDetails: {userType:string, userName: string, profilePic: string} = {
     userType:"admin",
     userName:"Test",
-    profilePic:"./assets/images/merchant/nopic.png"
+    profilePic:"./assets/images/merchant/user.jpg"
   };
 
 
